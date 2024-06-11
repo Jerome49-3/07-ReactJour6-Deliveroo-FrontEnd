@@ -1,5 +1,5 @@
-import Title from '../title/Title'
-import Image from '../../components/images/Image'
+import Title from '../title/Title';
+import Image from '../../components/images/Image';
 
 const Main = ({ data, classMain, classTxt }) => {
   const rests = data?.restaurant;

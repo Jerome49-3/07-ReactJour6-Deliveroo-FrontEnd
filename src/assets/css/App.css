@@ -63,7 +63,6 @@ body {
 /* MAIN */
 main {
   width: 100%;
-  height: 100%;
   display: flex;
   padding-top: 30px;
   justify-content: flex-start;
@@ -139,6 +138,12 @@ main>.banner>div {
   background-color: var(--backgrdWhite);
   padding: 15px;
   border-radius: 10px;
+}
+
+.card:hover {
+  box-shadow: 1px 1px 10px var(--backgrdGrey);
+  -moz-box-shadow: 1px 1px 10px var(--backgrdGrey);
+  -webkit-box-shadow: 1px 1px 10px var(--backgrdGrey);
 }
 
 .footerCard p {

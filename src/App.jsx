@@ -1,12 +1,12 @@
 
-import './assets/css/stylesheet.css'
-import './assets/css/App.css'
-import Header from './components/header/Header'
-import Logo from './assets/images/logo-teal.svg'
-import { useEffect, useState } from 'react'
-import axios from 'axios'
-import Loading from './components/loading/Loading'
-import Main from './components/main/Main'
+import './assets/css/stylesheet.css';
+import './assets/css/App.css';
+import Header from './components/header/Header';
+import Logo from './assets/images/logo-teal.svg';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import Loading from './components/loading/Loading';
+import Main from './components/main/Main';
 
 function App() {
   const [data, setData] = useState();
