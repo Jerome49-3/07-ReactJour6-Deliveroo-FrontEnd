@@ -162,3 +162,9 @@ aside {
   height: 34px;
   overflow: hidden;
 }
+
+/* ASIDE */
+aside {
+  height: 100%;
+  display: flex;
+}
