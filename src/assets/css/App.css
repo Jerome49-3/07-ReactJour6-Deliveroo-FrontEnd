@@ -1,0 +1,164 @@
+/* Title et Para */
+
+.titleOne {
+  color: var(--colorTitle);
+  font-size: 2rem;
+  line-height: 26.7px;
+  font-weight: bold;
+}
+
+.titleCateg {
+  color: var(--colorTitle);
+  font-size: 24px;
+  line-height: 20px;
+  font-weight: bold;
+  padding: 20px 0 20px 0;
+}
+
+.titleCard {
+  color: var(--colorTitle);
+  font-size: 18px;
+  line-height: 15.6px;
+}
+
+.pDesc {
+  color: var(--colorTitle);
+  font-size: 14px;
+  line-height: 20.8px;
+}
+
+.pBanner {
+  color: var(--colorParagraphe);
+  line-height: 28.8px;
+  font-size: 19px;
+}
+
+/* WRAPPER */
+.wrapper {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* HEADER */
+.header {
+  padding: 9px 0 9px 0;
+  width: 100%;
+  height: 59px;
+  border-bottom: 1px solid var(--colorParagraphe);
+}
+
+.imgHeader {
+  height: 41px;
+}
+
+/* MAIN */
+main {
+  width: 100%;
+  display: flex;
+  padding-top: 30px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.imgBanner {
+  width: 351px;
+  height: 197px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+main>.banner {
+  display: flex;
+}
+
+main>.banner>div {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 851px;
+  padding-right: 40px;
+  gap: 50px;
+}
+
+aside {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.asideTop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px;
+}
+
+.asideBottom>article {
+  background-color: var(--backgrdWhite);
+  padding: 20px;
+}
+
+/* MENUS - REPAS */
+.bouffe {
+  /* display: flex; */
+  /* justify-content: center;
+  align-items: flex-start;
+  flex-direction: column; */
+  background-color: var(--backgrdMain);
+  /* gap: 10px; */
+  width: 100%;
+}
+
+.boxPlats {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.boxPlats section {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.boxCards {
+  display: flex;
+  gap: 30px;
+  max-width: 838px;
+  flex-wrap: wrap;
+}
+
+.right img {
+  width: 132px;
+  height: 130px;
+}
+
+/* CARD */
+.card {
+  width: 402px;
+  height: 160px;
+  display: flex;
+  gap: 10px;
+  background-color: var(--backgrdWhite);
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.footerCard p {
+  width: 216px;
+  height: 34px;
+  overflow: hidden;
+}
