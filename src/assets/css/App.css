@@ -165,3 +165,9 @@ aside article h3 {
   border-radius: 10px;
   width: 80%;
 }
+
+/* FOOTERCARD */
+.footerCardBottom {
+  display: flex;
+  width: 100%;
+}

@@ -37,9 +37,9 @@ const Main = ({ data, classMain, classTxt }) => {
                                   <p></p>
                                   <div className="footerCard">
                                     <p>{menus.description}</p>
-                                    <div>
-                                      <p>{menus.price}</p>
-                                      {menus.populaire === true ? <div>star</div> : <div></div>}
+                                    <div className='footerCardBottom'>
+                                      <p>{menus.price} €</p>
+                                      {menus.popular === true ? <div>star</div> : <div></div>}
                                     </div>
                                   </div>
                                 </div>
