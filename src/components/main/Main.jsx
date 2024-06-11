@@ -3,7 +3,10 @@ import Image from '../../components/images/Image';
 import { useState } from 'react';
 
 const Main = ({ data }) => {
-  const [panier, setPanier] = useState([0]);
+  const [panier, setPanier] = useState([]);
+  //je crée un nouveau tableau de panier                         
+  const panierClone = [...panier];
+  console.log('panierClone', panierClone);
   const [quantity, setQuantity] = useState(0);
   return (
     <>
@@ -21,13 +24,17 @@ const Main = ({ data }) => {
                       </div>
                       <div className="boxCards">
                         {repas.meals.map((menus, key = menus.id) => {
-                          // console.log('menus:', menus);
+                          console.log('menus:', menus);
                           return (
                             <>
                               <article key={key} className='card' onClick={() => {
-                                const panierClone = [...panier];
-                                setPanier(panierClone.push(menus))
-                                // console.log('panierClone', panierClone);
+                                //au clic, je defini la nouvelle valeur de panier en faisant un push des objects menus
+                                {
+                                  repas.meals.map((menu, key = menu.id) => {
+                                    console.log('menu', menu);
+                                    setPanier(panierClone.push({ id: menu.id, title: menu.title, price: menu.price }))
+                                  })
+                                }
                               }}>
                                 <div className="left">
                                   <Title title={menus.title} classTxt="titleCard" />
@@ -58,9 +65,9 @@ const Main = ({ data }) => {
             <article className='panier'>
               <h3>Valider mon panier</h3>
               <div>
-                {data?.categories.map((repas, index) => {
+                {/* {data?.categories.map((repas, index) => {
                   // console.log('repas in aside:', repas);
-                })}
+                })} */}
                 <p>votre panier est vide</p>
               </div>
             </article>
