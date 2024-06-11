@@ -1,11 +1,14 @@
 import Title from '../title/Title';
 import Image from '../../components/images/Image';
+import { useState } from 'react';
 
-const Main = ({ data, classMain, classTxt }) => {
-  const rests = data?.restaurant;
+const Main = ({ data }) => {
+  const [panier, setPanier] = useState([0]);
+  const [quantity, setQuantity] = useState(0);
   const categ = data?.categories;
+  const plats = categ?.meals;
   // const [pop, setPop] = useState(false);
-  // console.log('rests:', rests);
+  console.log('plats:', plats);
   // console.log('categ:', categ);
   return (
     <>
@@ -15,16 +18,21 @@ const Main = ({ data, classMain, classTxt }) => {
             <div className="boxPlats">
               {categ.map((repas, index) => {
                 // console.log('repas:', repas);
-                if (repas.length !== 0) {
+                if (categ.length !== 0) {
+                  console.log('repas.length:', categ.length);
                   return (
                     <>
                       <Title title={repas.name} classTxt='titleCateg' />
                       <div className="boxCards">
                         {repas.meals.map((menus, key = menus.id) => {
-                          console.log('menus:', menus);
+                          // console.log('menus:', menus);
                           return (
                             <>
-                              <article key={key} className='card'>
+                              <article key={key} className='card' onClick={() => {
+                                const panierClone = [...panier];
+                                setPanier(panierClone.push(menus))
+                                console.log('panierClone', panierClone);
+                              }}>
                                 <div className="left">
                                   <Title title={menus.title} classTxt="titleCard" />
                                   <p></p>
@@ -54,61 +62,16 @@ const Main = ({ data, classMain, classTxt }) => {
             <article className='panier'>
               <h3>Valider mon panier</h3>
               <div>
+                {console.log('categ:', categ)}
+                {categ.map((repas, index) => {
+                  console.log('categ in aside:', categ);
+                })}
                 <p>votre panier est vide</p>
               </div>
             </article>
           </aside>
         </section>
       </main>
-      {/* <section className='bouffe'>
-          <section className='wrapper'>
-            <div className="boxPlats">
-              {categ.map((repas, index) => {
-                // console.log('repas:', repas);
-                if (repas.length !== 0) {
-                  return (
-                    <section>
-                      <Title title={repas.name} classTxt='titleCateg' />
-                      <div className="boxCards">
-                        {repas.meals.map((menus, key = menus.id) => {
-                          console.log('menus:', menus);
-                          return (
-                            <>
-                              <article key={key} className='card'>
-                                <div className="left">
-                                  <Title title={menus.title} classTxt="titleCard" />
-                                  <p></p>
-                                  <div className="footerCard">
-                                    <p>{menus.description}</p>
-                                    <div className='footerCardBottom'>
-                                      <p>{menus.price} €</p>
-                                      {menus.popular === true ? <p>star</p> : <div></div>}
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="right">
-                                  {menus.picture ? <Image src={menus.picture} /> : <div></div>}
-                                </div>
-                              </article>
-                            </>
-                          )
-                        })}
-                      </div>
-                    </section>
-                  )
-                }
-              })}
-            </div>
-          </section>
-        </section>
-        <aside>
-          <article className='panier'>
-            <h3>Valider mon panier</h3>
-            <div>
-              <p>votre panier est vide</p>
-            </div>
-          </article>
-        </aside> */}
     </>
   )
 }
