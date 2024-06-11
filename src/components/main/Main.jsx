@@ -5,24 +5,20 @@ import { useState } from 'react';
 const Main = ({ data }) => {
   const [panier, setPanier] = useState([0]);
   const [quantity, setQuantity] = useState(0);
-  const categ = data?.categories;
-  const plats = categ?.meals;
-  // const [pop, setPop] = useState(false);
-  console.log('plats:', plats);
-  // console.log('categ:', categ);
   return (
     <>
       <main>
         <section className='wrapperMain'>
           <div className='left'>
             <div className="boxPlats">
-              {categ.map((repas, index) => {
-                // console.log('repas:', repas);
-                if (categ.length !== 0) {
-                  console.log('repas.length:', categ.length);
+              {data?.categories.map((repas, index) => {
+                console.log('data?.categories?.meals?.length:', repas?.meals?.length);
+                if (repas?.meals?.length !== 0) {
                   return (
                     <>
-                      <Title title={repas.name} classTxt='titleCateg' />
+                      <div key={index}>
+                        <Title title={repas.name} classTxt='titleCateg' />
+                      </div>
                       <div className="boxCards">
                         {repas.meals.map((menus, key = menus.id) => {
                           // console.log('menus:', menus);
@@ -31,7 +27,7 @@ const Main = ({ data }) => {
                               <article key={key} className='card' onClick={() => {
                                 const panierClone = [...panier];
                                 setPanier(panierClone.push(menus))
-                                console.log('panierClone', panierClone);
+                                // console.log('panierClone', panierClone);
                               }}>
                                 <div className="left">
                                   <Title title={menus.title} classTxt="titleCard" />
@@ -62,9 +58,8 @@ const Main = ({ data }) => {
             <article className='panier'>
               <h3>Valider mon panier</h3>
               <div>
-                {console.log('categ:', categ)}
-                {categ.map((repas, index) => {
-                  console.log('categ in aside:', categ);
+                {data?.categories.map((repas, index) => {
+                  // console.log('repas in aside:', repas);
                 })}
                 <p>votre panier est vide</p>
               </div>
