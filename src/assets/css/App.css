@@ -127,6 +127,8 @@ main>.banner>div {
 .right img {
   width: 132px;
   height: 130px;
+  object-fit: cover;
+  border-radius: 5px;
 }
 
 /* CARD */
