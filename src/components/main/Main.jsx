@@ -39,7 +39,7 @@ const Main = ({ data, classMain, classTxt }) => {
                                     <p>{menus.description}</p>
                                     <div className='footerCardBottom'>
                                       <p>{menus.price} €</p>
-                                      {menus.popular === true ? <div>star</div> : <div></div>}
+                                      {menus.popular === true ? <p>star</p> : <div></div>}
                                     </div>
                                   </div>
                                 </div>

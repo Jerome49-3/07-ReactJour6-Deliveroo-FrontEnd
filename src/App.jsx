@@ -1,4 +1,5 @@
 
+import './assets/css/stylesheet.css'
 import './assets/css/App.css'
 import Header from './components/header/Header'
 import Logo from './assets/images/logo-teal.svg'

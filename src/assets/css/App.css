@@ -1,3 +1,7 @@
+body {
+  font-family: 'IBM Plex Sans', 'sans-serif';
+}
+
 /* Title et Para */
 
 .titleOne {
@@ -11,8 +15,12 @@
   color: var(--colorTitle);
   font-size: 24px;
   line-height: 20px;
-  font-weight: bold;
   padding: 20px 0 20px 0;
+}
+
+.titleOne,
+.titleCateg {
+  font-family: 'IBM Plex Sans Bold', 'sans-serif';
 }
 
 .titleCard {
@@ -169,5 +177,12 @@ aside article h3 {
 /* FOOTERCARD */
 .footerCardBottom {
   display: flex;
+  justify-content: flex-start;
+  align-items: center;
   width: 100%;
+}
+
+.footerCardBottom p {
+  width: 50%;
+  margin: 0;
 }
