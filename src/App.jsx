@@ -30,8 +30,8 @@ function App() {
     <Loading />
   ) : (
     <>
-      <Header classHeader='header' classWrapper='wrapper' src={Logo} classImg='imgHeader' />
-      <Main data={data} classMain='wrapper banner' classTxt='titleOne' />
+      <Header classHeader='header' classWrapper='wrapper' src={Logo} classImg='imgHeader' data={data} classTxt='titleOne' />
+      <Main data={data} classMain='wrapper banner' />
     </>
   )
 }
