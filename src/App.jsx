@@ -11,12 +11,16 @@ function App() {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await axios.get(
-        'https://site--backend-deliveroo--s4qnmrl7fg46.code.run/'
-      );
+    try {
+      const fetchData = async () => {
+        const response = await axios.get(
+          'https://site--backend-deliveroo--s4qnmrl7fg46.code.run/'
+        );
+      }
       setData(response.data);
       setIsLoading(false);
+    } catch (error) {
+      console.log(error);
     }
     fetchData();
   }, []);
