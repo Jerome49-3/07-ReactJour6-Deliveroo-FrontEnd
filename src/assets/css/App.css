@@ -216,3 +216,10 @@ aside article h3 {
   justify-content: center;
   align-items: center;
 }
+
+.boxPanier {
+  width: 100%;
+  color: black;
+  padding: 20px;
+  border: 2px solid crimson;
+}
