@@ -217,9 +217,21 @@ aside article h3 {
   align-items: center;
 }
 
-.boxPanier {
+.shoppingContainer {
+  width: 100%;
+  display: flex;
+  border: 2px solid green;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 15px;
+  gap: 5px;
+}
+
+.shoppingCard {
   width: 100%;
   color: black;
   padding: 20px;
   border: 2px solid crimson;
+  border-radius: 10px;
 }

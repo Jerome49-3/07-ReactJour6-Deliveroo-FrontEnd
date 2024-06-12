@@ -65,13 +65,14 @@ const Main = ({ data }) => {
           <aside>
             <article className='panier'>
               <h3>Valider mon panier</h3>
-              <div className='boxPanier'>
+              <div className='shoppingContainer'>
                 {/* {console.log('panier on aside', panier)} */}
+                {console.log('repas.id in aside:', '\n', panier.id, '\n', 'repas.title in aside:', panier.title, '\n', 'repas.price in aside:', panier.price)}
                 {panier.map((repas, key = uuidv4()) => {
                   // { console.log('panier on aside', panier) }
-                  { console.log('repas.id in aside:', '\n', repas.id, '\n', 'repas.title in aside:', repas.title, '\n', 'repas.price in aside:', repas.price) };
+                  { console.log('repas.id in aside:', '\n', repas.id, '\n', 'repas.title in aside:', repas.title, '\n', 'repas.price in aside:', repas.price) }
                   return (
-                    <div key={key}>
+                    <div key={key} className='shoppingCard'>
                       <div>{repas.id}</div>
                       <div>{repas.title}</div>
                       <div>{repas.price}</div>
