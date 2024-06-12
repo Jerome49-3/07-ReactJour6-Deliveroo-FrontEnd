@@ -32,7 +32,7 @@ const Main = ({ data }) => {
                                 const newPanier = { id: menus.id, title: menus.title, price: menus.price };
                                 const panierClone = [...panier]
                                 console.log('newPanier:', newPanier);
-                                panierClone.push([newPanier])
+                                panierClone.push(newPanier)
                                 setPanier(panierClone)
                               }}>
                                 {/* {console.log('panier after on click:', panier)} */}
@@ -65,19 +65,25 @@ const Main = ({ data }) => {
             <article className='panier'>
               <h3>Valider mon panier</h3>
               <div>
-                {panier.map((repas, index) => {
-                  // {
-                  //   panier.length !== 0 ? <div>
-                  //   // {console.log('panier on aside', panier)}
-                  //   // console.log('repas in aside:', repas);
+                {console.log('panier on aside', panier)}
+                {panier ? <div className='boxPanier' >
+                  <div>{panier.id}</div>
+                  <div>{panier.title}</div>
+                  <div>{panier.price}</div>
+                </div> : <p>votre panier est vide</p>}
+                {/* {panier.map((repas, index) => {
+                  {
+                    panier.length !== 0 ? <div>
+                    // {console.log('panier on aside', panier)}
+                    // console.log('repas in aside:', repas);
                   <div className='boxPanier' key={index} >
                     <div>{repas.id}</div>
                     <div>{repas.title}</div>
                     <div>{repas.price}</div>
                   </div>
                   //   </div> : <p>votre panier est vide</p>
-                  // }
-                })}
+                  }
+                })} */}
               </div>
             </article>
           </aside>
