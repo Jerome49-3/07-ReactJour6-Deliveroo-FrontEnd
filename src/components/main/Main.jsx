@@ -4,9 +4,8 @@ import { useState } from 'react';
 
 const Main = ({ data }) => {
   const [panier, setPanier] = useState([]);
+  console.log('panier', panier);
   //je crée un nouveau tableau de panier                         
-  const panierClone = [...panier];
-  console.log('panierClone', panierClone);
   const [quantity, setQuantity] = useState(0);
   return (
     <>
@@ -15,7 +14,7 @@ const Main = ({ data }) => {
           <div className='left'>
             <div className="boxPlats">
               {data?.categories.map((repas, index) => {
-                console.log('data?.categories?.meals?.length:', repas?.meals?.length);
+                // console.log('data?.categories?.meals?.length:', repas?.meals?.length);
                 if (repas?.meals?.length !== 0) {
                   return (
                     <>
@@ -24,18 +23,19 @@ const Main = ({ data }) => {
                       </div>
                       <div className="boxCards">
                         {repas.meals.map((menus, key = menus.id) => {
-                          console.log('menus:', menus);
+                          // console.log('menus:', menus);
                           return (
                             <>
                               <article key={key} className='card' onClick={() => {
                                 //au clic, je defini la nouvelle valeur de panier en faisant un push des objects menus
-                                {
-                                  repas.meals.map((menu, key = menu.id) => {
-                                    console.log('menu', menu);
-                                    setPanier(panierClone.push({ id: menu.id, title: menu.title, price: menu.price }))
-                                  })
-                                }
+                                // console.log('menus on click:', menus);
+                                const newPanier = { id: menus.id, title: menus.title, price: menus.price };
+                                const panierClone = [...panier]
+                                console.log('newPanier:', newPanier);
+                                panierClone.push([newPanier])
+                                setPanier(panierClone)
                               }}>
+                                {/* {console.log('panier after on click:', panier)} */}
                                 <div className="left">
                                   <Title title={menus.title} classTxt="titleCard" />
                                   <p></p>
@@ -65,15 +65,24 @@ const Main = ({ data }) => {
             <article className='panier'>
               <h3>Valider mon panier</h3>
               <div>
-                {/* {data?.categories.map((repas, index) => {
-                  // console.log('repas in aside:', repas);
-                })} */}
-                <p>votre panier est vide</p>
+                {panier.map((repas, index) => {
+                  // {
+                  //   panier.length !== 0 ? <div>
+                  //   // {console.log('panier on aside', panier)}
+                  //   // console.log('repas in aside:', repas);
+                  <div className='boxPanier' key={index} >
+                    <div>{repas.id}</div>
+                    <div>{repas.title}</div>
+                    <div>{repas.price}</div>
+                  </div>
+                  //   </div> : <p>votre panier est vide</p>
+                  // }
+                })}
               </div>
             </article>
           </aside>
         </section>
-      </main>
+      </main >
     </>
   )
 }
