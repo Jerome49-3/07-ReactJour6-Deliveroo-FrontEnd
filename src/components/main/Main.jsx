@@ -1,10 +1,12 @@
 import Title from '../title/Title';
 import Image from '../../components/images/Image';
 import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
 
 const Main = ({ data }) => {
   const [panier, setPanier] = useState([]);
+  //convention de nommage pour le panier:
+  // const [cart, setCart] = useState([]);
   console.log('panier', panier);
   //je crée un nouveau tableau de panier                         
   const [quantity, setQuantity] = useState(0);
@@ -68,17 +70,20 @@ const Main = ({ data }) => {
               <div className='shoppingContainer'>
                 {/* {console.log('panier on aside', panier)} */}
                 {console.log('repas.id in aside:', '\n', panier.id, '\n', 'repas.title in aside:', panier.title, '\n', 'repas.price in aside:', panier.price)}
-                {panier.map((repas, key = uuidv4()) => {
-                  // { console.log('panier on aside', panier) }
-                  { console.log('repas.id in aside:', '\n', repas.id, '\n', 'repas.title in aside:', repas.title, '\n', 'repas.price in aside:', repas.price) }
-                  return (
-                    <div key={key} className='shoppingCard'>
-                      <div>{repas.id}</div>
-                      <div>{repas.title}</div>
-                      <div>{repas.price}</div>
-                    </div>
-                  )
-                })}
+                {panier.length !== 0 ? <div>
+                  {panier.map((repas, key = repas.id) => {
+                    // { console.log('panier on aside', panier) }
+                    { console.log('repas.id in aside:', '\n', repas.id, '\n', 'repas.title in aside:', repas.title, '\n', 'repas.price in aside:', repas.price) }
+                    return (
+                      <div key={key} className='shoppingCard'>
+                        {/* <div>{repas.id}</div> */}
+                        <span>{repas.title}</span>
+                        <span>{repas.price}</span>
+                      </div>
+                    )
+                  })}
+                </div> :
+                  <div>Le panier est vide</div>}
               </div>
             </article>
           </aside>
