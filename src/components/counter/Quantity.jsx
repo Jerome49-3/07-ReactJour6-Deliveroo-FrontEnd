@@ -1,15 +1,23 @@
 // import axios from "axios";
 // import handleRemoveQuantity from "../../assets/lib/handleClick/handleRemoveQuantity";
 // import handleAddQuantity from "../../assets/lib/handleClick/handleAddQuantity";
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import QuantityReducer from "../../store/QuantityReducer";
+import suppElCaddy from "../../assets/lib/handleClick/suppElCaddy";
 
-const Quantity = ({ elPanierId, elPanierQuantity }) => {
-  console.log("%celPanierQuantity:", "color: yellow", elPanierQuantity);
-  const id = elPanierId;
+const Quantity = ({ panier, setPanier, elPanier }) => {
+  const id = elPanier?.idMeal;
   console.log("%cid:", "color: yellow", id);
+  // const elPanierQuantity = elPanier?.quantity;
+  // console.log("%celPanierQuantity:", "color: yellow", elPanierQuantity);
   const [state, dispatch] = useReducer(QuantityReducer, { quantity: 1 });
+
   // console.log("%cQuantity:", "color: yellow", quantity);
+  useEffect(() => {
+    if (state.quantity === 0) {
+      suppElCaddy(panier, setPanier, elPanier);
+    }
+  }, [state.quantity]);
 
   return (
     <div className="boxQuantity">

@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { Fragment } from "react";
 import Title from "../title/Title";
 import Image from "../../components/images/Image";
 import Quantity from "../counter/Quantity";
@@ -12,7 +13,7 @@ const Main = ({ data, panier, setPanier, faStar }) => {
   // console.log("%cdata in Main:", "color: yellow", data);
   //convention de nommage pour le panier:
   // const [cart, setCart] = useState([]);
-  console.log("%cPanier in Main:", "color: yellow", panier);
+  console.log("%cPanier in Main:", "color: orange", panier);
 
   //je crée un nouveau tableau de panier
   return (
@@ -20,68 +21,62 @@ const Main = ({ data, panier, setPanier, faStar }) => {
       <section className="wrapperMain">
         <div className="left">
           <div className="boxPlats">
-            {data?.categories.map((category, index) => {
-              // console.log("category:", category);
+            {data?.categories.map((category) => {
+              // console.log("%ccategory:", "color: orange", category);
               const nameCategory = category.name;
               // console.log("nameCategory:", nameCategory);
               // console.log('data?.categories?.meals?.length:', repas?.meals?.length);
               if (category?.meals?.length !== 0) {
                 return (
-                  <>
-                    <div key={index}>
+                  <Fragment key={category._id}>
+                    <div>
                       <Title title={category.name} classTxt="titleCateg" />
                     </div>
                     <div className="boxCards">
-                      {category.meals.map((menus, key = menus.id) => {
+                      {category.meals.map((menus) => {
                         // console.log("%cmenus:", "color: orange", menus);
                         return (
-                          <>
-                            <article
-                              key={key}
-                              className="card"
-                              onClick={(e) =>
-                                handleAddCaddy(
-                                  e,
-                                  axios,
-                                  panier,
-                                  nameCategory,
-                                  menus,
-                                  setPanier
-                                )
-                              }
-                            >
-                              {/* {console.log('panier after on click:', panier)} */}
-                              <div className="left">
-                                <Title
-                                  title={menus.title}
-                                  classTxt="titleCard"
-                                />
-                                <p></p>
-                                <div className="footerCard">
-                                  <p>{menus.description}</p>
-                                  <div className="footerCardBottom">
-                                    <p>{menus.price} €</p>
-                                    {menus.popular === true ? (
-                                      <FontAwesomeIcon icon={faStar} />
-                                    ) : (
-                                      <p></p>
-                                    )}
-                                  </div>
+                          <article
+                            key={menus.id}
+                            className="card"
+                            onClick={(e) =>
+                              handleAddCaddy(
+                                e,
+                                axios,
+                                panier,
+                                nameCategory,
+                                menus,
+                                setPanier
+                              )
+                            }
+                          >
+                            <div className="left">
+                              <Title title={menus.title} classTxt="titleCard" />
+                              <p></p>
+                              <div className="footerCard">
+                                <p>{menus.description}</p>
+                                <div className="footerCardBottom">
+                                  <p>{menus.price} €</p>
+                                  {menus.popular === true ? (
+                                    <FontAwesomeIcon icon={faStar} />
+                                  ) : (
+                                    <p></p>
+                                  )}
                                 </div>
                               </div>
-                              <div className="right">
-                                {menus.picture ? (
-                                  <Image src={menus.picture} />
-                                ) : (
-                                  <div></div>
-                                )}
-                              </div>
-                            </article>
-                          </>
+                            </div>
+                            <div className="right">
+                              {menus.picture ? (
+                                <Image src={menus.picture} />
+                              ) : (
+                                <div></div>
+                              )}
+                            </div>
+                          </article>
                         );
                       })}
                     </div>
-                  </>
+                  </Fragment>
                 );
               }
             })}
@@ -100,11 +95,9 @@ const Main = ({ data, panier, setPanier, faStar }) => {
               )}
               {panier?.length !== 0 ? (
                 <>
-                  {panier?.map((elPanier, key = elPanier.id) => {
-                    // console.log("elPanier:", elPanier);
-
+                  {panier?.map((elPanier) => {
+                    // console.log("%celPanier:", "color: orange", elPanier);
                     const elPanierId = elPanier?.idMeal;
-                    const elPanierQuantity = elPanier?.quantity;
                     // {
                     //   console.log(
                     //     "elPanier in aside:",
@@ -122,13 +115,14 @@ const Main = ({ data, panier, setPanier, faStar }) => {
                     //   );
                     // }
                     return (
-                      <div key={key} className="shoppingCard">
+                      <div key={elPanierId} className="shoppingCard">
                         {/* <div>{repas.id}</div> */}
                         <span>
                           {" "}
                           <Quantity
-                            elPanierId={elPanierId}
-                            elPanierQuantity={elPanierQuantity}
+                            panier={panier}
+                            setPanier={setPanier}
+                            elPanier={elPanier}
                           />
                         </span>
                         <span>{elPanier?.title}</span>
