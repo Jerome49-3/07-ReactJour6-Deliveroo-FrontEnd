@@ -1,10 +1,11 @@
 const fetchDataMeal = async (axios, setData, setIsLoading) => {
   try {
     const response = await axios.get(
-      "https://site--backend-deliveroo--s4qnmrl7fg46.code.run/"
+      `${import.meta.env.VITE_REACT_APP_URL}/getRestaurant`
     );
     if (response) {
-      setData(response.data);
+      // console.log("reponse in fetchDataMeal:", response);
+      setData(response.data[0]);
       setIsLoading(false);
     }
   } catch (error) {

@@ -1,25 +1,45 @@
-import { useState } from "react";
+// import axios from "axios";
+// import handleRemoveQuantity from "../../assets/lib/handleClick/handleRemoveQuantity";
+// import handleAddQuantity from "../../assets/lib/handleClick/handleAddQuantity";
+import { useReducer } from "react";
+import QuantityReducer from "../../store/QuantityReducer";
 
-const Quantity = () => {
-  const [quantity, setQuantity] = useState(1);
-  console.log("%cQuantity:", "color: yellow", quantity);
+const Quantity = ({ elPanierId, elPanierQuantity }) => {
+  console.log("%celPanierQuantity:", "color: yellow", elPanierQuantity);
+  const id = elPanierId;
+  console.log("%cid:", "color: yellow", id);
+  const [state, dispatch] = useReducer(QuantityReducer, { quantity: 1 });
+  // console.log("%cQuantity:", "color: yellow", quantity);
+
   return (
     <div className="boxQuantity">
-      {quantity <= 0 ? (
+      {state.quantity <= 0 ? (
         <div className="btnHide"></div>
       ) : (
-        <button className="show" onClick={() => setQuantity(quantity - 1)}>
+        <button
+          className="show"
+          onClick={() => {
+            dispatch({ type: "deleted" });
+          }}
+        >
           <p>-</p>
         </button>
       )}
 
-      <p className={quantity === 0 || quantity > 9 ? "red" : "black"}>
-        {quantity}
+      <p
+        className={state.quantity === 0 || state.quantity > 9 ? "red" : "black"}
+      >
+        {state.quantity}
       </p>
-      {quantity > 9 ? (
+      {state.quantity > 9 ? (
         <div className="btnHide"></div>
       ) : (
-        <button className="show" onClick={() => setQuantity(quantity + 1)}>
+        <button
+          className="show"
+          onClick={() => {
+            dispatch({ type: "added" });
+          }}
+        >
           <p>+</p>
         </button>
       )}

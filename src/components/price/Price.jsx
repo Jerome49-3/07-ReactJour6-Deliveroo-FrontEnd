@@ -1,10 +1,12 @@
 import { useLayoutEffect, useState } from "react";
-const Price = ({ repas }) => {
+const Price = ({ elPanier }) => {
+  console.log("%celPanier:", "color: orange", elPanier);
+
   const [price, setPrice] = useState();
 
   useLayoutEffect(() => {
-    setPrice(repas?.price);
-  }, [repas]);
+    setPrice(elPanier?.price);
+  }, [elPanier]);
 
   return <span>{price}</span>;
 };

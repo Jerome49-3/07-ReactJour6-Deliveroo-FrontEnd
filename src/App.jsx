@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import io from "socket.io-client";
+const socket = io(`${import.meta.env.VITE_REACT_APP_URL}`);
 // import { faHeart as farHeart } from "@fortawesome/free-regular-svg-icons";
 library.add(faStar);
 
@@ -14,30 +16,44 @@ import Main from "./components/main/Main";
 //images
 import Logo from "./assets/images/logo-teal.svg";
 import fetchDataMeal from "./assets/lib/fetchData/fetchDataMeal";
+import fetchCaddy from "./assets/lib/fetchData/fetchCaddy";
 
 function App() {
   const [data, setData] = useState();
+  // console.log("data in App:", data);
   const [isLoading, setIsLoading] = useState(true);
   const [panier, setPanier] = useState(() => {
     const newShoppingCard = localStorage.getItem("CaddyDeliveroo");
-    if (!newShoppingCard) {
+    // console.log("%cnewShoppingCard in App:", "color: green", newShoppingCard);
+    if (newShoppingCard === null) {
       return [];
     } else {
       return JSON.parse(newShoppingCard);
     }
   });
-  // const [quantity, setQuantity] = useState(() => {
-  //   const newQuantityData = localStorage.getItem("quantityData");
-  //   if (!newQuantityData) {
-  //     return [];
-  //   } else {
-  //     return JSON.parse(newQuantityData);
-  //   }
-  // });
+  console.log("%cpanier in App:", "color: yellow", panier);
+
   useEffect(() => {
     fetchDataMeal(axios, setData, setIsLoading);
   }, []);
-  console.log("data:", data);
+
+  useEffect(() => {
+    socket.on("connect", () => {
+      console.log("socket connected:", socket.id);
+    });
+    socket.on("caddyUpdated", (change) => {
+      console.log("%cchange in App:", "color: blue", change);
+      fetchCaddy(axios, setPanier);
+    });
+    socket.on("disconnect", () => {
+      console.log(socket.id);
+    });
+    socket.on("error", (error) => {
+      console.log("%cerror on socket in Home page:", "color: red", error);
+    });
+    return () => socket.off("caddyUpdated");
+  }, [panier]);
+
   return isLoading ? (
     <Loading />
   ) : (

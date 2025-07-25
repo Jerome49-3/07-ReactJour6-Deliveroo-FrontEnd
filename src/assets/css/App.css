@@ -289,19 +289,20 @@ aside article h3 {
   gap: 5px;
 }
 .boxQuantity button {
-  background-color: var(--backgrdGrey);
+  background-color: transparent;
   width: 25px;
-  height: 20px;
-  border-radius: 5px;
+  height: 25px;
+  border-radius: 50%;
+  color: #00bdad;
+  border: 2px solid #00bdad;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  border: none;
-  box-shadow: 0px 0px 2.5px rgba(0, 0, 0, 0.7),
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.7),
     0.25px 0.25px 1px rgba(0, 0, 0, 0.7);
-  -moz-box-shadow: 0px 0px 2.5px rgba(0, 0, 0, 0.7),
+  -moz-box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.7),
     0.25px 0.25px 1px rgba(0, 0, 0, 0.7);
-  -webkit-box-shadow: 0px 0px 2.5px rgba(0, 0, 0, 0.7),
+  -webkit-box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.7),
     0.25px 0.25px 1px rgba(0, 0, 0, 0.7);
 }
 .boxQuantity button:active {
