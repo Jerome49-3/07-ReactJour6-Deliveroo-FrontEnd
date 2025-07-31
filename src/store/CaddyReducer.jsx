@@ -47,28 +47,39 @@ export default function CaddyReducer(state, action) {
       return newSlice;
     }
     case "removedQuantity": {
-      const newState = [...state];
-      const newArr = newState.map((newEl) => {
-        console.log("%cnewEl in removedQuantity:", "color: red", newEl);
-        console.log(
-          "%cnewEl.idMeal in removedQuantity:",
-          "color: red",
-          newEl.idMeal
-        );
-        console.log(
-          "%caction.elPanierId in removedQuantity:",
-          "color: red",
-          action.elPanierId
-        );
-        if (newEl.idMeal === action.elPanierId) {
-          return {
-            ...newEl,
-            quantity: newEl.quantity - 1,
-          };
-        }
-      });
-      console.log("newArr in addedQuantity:", newArr);
-      return newArr;
+      const newSlice = [
+        ...state.slice(0, index),
+        ...state
+          .map((newEl) => {
+            console.log("%cnewEl in addedQuantity:", "color: green", newEl);
+            console.log(
+              "%cnewEl.idMeal in addedQuantity:",
+              "color: green",
+              newEl.idMeal
+            );
+            console.log(
+              "%caction.elPanierId in addedQuantity:",
+              "color: green",
+              action.elPanierId
+            );
+            if (newEl.idMeal === action.elPanierId) {
+              console.log(
+                "%caction.elPanierId on if in addedQuantity:",
+                "color: orange",
+                action.elPanierId
+              );
+
+              return {
+                ...newEl,
+                quantity: newEl.quantity - 1,
+              };
+            }
+          })
+          .filter((el) => el),
+        ...state.slice(middleSlice, endSlice),
+      ];
+      console.log("newSlice in addedQuantity:", newSlice);
+      return newSlice;
     }
     // case "quantityIsOverTen": {
     //   const newState = [...state];
