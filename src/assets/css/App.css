@@ -248,6 +248,7 @@ aside article h3 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-direction: column;
   width: 100%;
   color: black;
   background: #ffffff;
@@ -280,6 +281,12 @@ aside article h3 {
   & span {
     width: calc(100% / 3);
   }
+}
+.shoppingCard .elShoppingCard {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .boxQuantity {
   display: flex;

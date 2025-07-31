@@ -15,7 +15,7 @@ const Main = ({ data, faStar }) => {
   // console.log("%cdata in Main:", "color: yellow", data);
   //convention de nommage pour le panier:
   // const [cart, setCart] = useState([]);
-  console.log("%cstate in Main:", "color: orange", state);
+  // console.log("%cstate in Main:", "color: orange", state);
 
   //je crée un nouveau tableau de panier
   return (
@@ -109,19 +109,23 @@ const Main = ({ data, faStar }) => {
                     const elPanierId = elPanier?.idMeal;
                     return (
                       <div key={index} className="shoppingCard">
-                        {/* <div>{repas.id}</div> */}
-                        <span>
-                          {" "}
-                          <Quantity
-                            elPanier={elPanier}
-                            state={state}
-                            dispatch={dispatch}
-                            elPanierId={elPanierId}
-                            index={index}
-                          />
-                        </span>
-                        <span>{elPanier?.title}</span>
-                        <Price elPanier={elPanier} />
+                        <div className="elShoppingCard">
+                          <span>
+                            {" "}
+                            <Quantity
+                              elPanier={elPanier}
+                              state={state}
+                              dispatch={dispatch}
+                              elPanierId={elPanierId}
+                              index={index}
+                            />
+                          </span>
+                          <span>{elPanier?.title}</span>
+                          <Price elPanier={elPanier} />
+                        </div>
+                        {elPanier?.message && elPanier?.quantity === 10 && (
+                          <div className="red">{elPanier.message}</div>
+                        )}
                       </div>
                     );
                   })}
