@@ -9,6 +9,8 @@ export default function CaddyReducer(state, action) {
   const index = action.index;
   const middleSlice = index + 1;
   const endSlice = state.length;
+  const defaultPrice = action.defaultPrice;
+  const newPrice = action?.newPrice;
 
   switch (action.type) {
     case "addedQuantity": {
@@ -16,6 +18,12 @@ export default function CaddyReducer(state, action) {
         ...state.slice(0, index),
         ...state
           .map((newEl) => {
+            const newQuantity = newEl.quantity + 1;
+            console.log(
+              "%cnewQuantity in addedQuantity:",
+              "color: green",
+              newQuantity
+            );
             console.log("%cnewEl in addedQuantity:", "color: green", newEl);
             console.log(
               "%cnewEl.idMeal in addedQuantity:",
@@ -37,6 +45,7 @@ export default function CaddyReducer(state, action) {
               return {
                 ...newEl,
                 quantity: newEl.quantity + 1,
+                newPrice: defaultPrice * newQuantity,
               };
             }
           })
@@ -51,63 +60,37 @@ export default function CaddyReducer(state, action) {
         ...state.slice(0, index),
         ...state
           .map((newEl) => {
-            console.log("%cnewEl in addedQuantity:", "color: green", newEl);
+            console.log("%cnewEl in removedQuantity:", "color: green", newEl);
             console.log(
-              "%cnewEl.idMeal in addedQuantity:",
+              "%cnewEl.idMeal in removedQuantity:",
               "color: green",
               newEl.idMeal
             );
             console.log(
-              "%caction.elPanierId in addedQuantity:",
+              "%caction.elPanierId in removedQuantity:",
               "color: green",
               action.elPanierId
             );
             if (newEl.idMeal === action.elPanierId) {
               console.log(
-                "%caction.elPanierId on if in addedQuantity:",
+                "%caction.elPanierId on if in removedQuantity:",
                 "color: orange",
                 action.elPanierId
               );
-
               return {
                 ...newEl,
                 quantity: newEl.quantity - 1,
+                newPrice: newPrice - defaultPrice,
               };
             }
           })
           .filter((el) => el),
         ...state.slice(middleSlice, endSlice),
       ];
-      console.log("newSlice in addedQuantity:", newSlice);
+      console.log("newSlice in removedQuantity:", newSlice);
       return newSlice;
     }
-    // case "quantityIsOverTen": {
-    //   const newState = [...state];
-    //   const newArr = [
-    //     ...newState.slice((action.index, end) => {
-    //       console.log("%cnewEl in quantityIsOverTen:", "color: green", newEl);
-    //       console.log(
-    //         "%cnewEl.idMeal in quantityIsOverTen:",
-    //         "color: green",
-    //         newEl.idMeal
-    //       );
-    //       console.log(
-    //         "%caction.elPanierId in quantityIsOverTen:",
-    //         "color: green",
-    //         action.elPanierId
-    //       );
-    //       if (newEl.idMeal === action.elPanierId) {
-    //         return {
-    //           ...newEl,
-    //           message: (newEl.message = "La quantité maximum est de 10"),
-    //           quantity: (newEl.quantity = 10),
-    //         };
-    //       }
-    //     }),
-    //   ];
-    //   console.log("newArr in quantityIsOverTen:", newArr);
-    //   return newArr;
-    // }
+
     case "addedPanier": {
       const verifId = state.some((el) => {
         // console.log("%cel:", "color: red", el);

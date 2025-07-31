@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 
-const Quantity = ({ elPanier, state, dispatch, index }) => {
+const Quantity = ({ elPanier, dispatch, index }) => {
   const idMeal = elPanier?.idMeal;
   // console.log("%cidMeal on Quantity:", "color: yellow", idMeal);
   // console.log("%cstate on Quantity:", "color: yellow", state);
@@ -13,7 +13,9 @@ const Quantity = ({ elPanier, state, dispatch, index }) => {
   //   elPanier?.quantity
   // );
   const defaultPrice = Number(elPanier?.defaultPrice) * 100;
-  // console.log("%cdefaultPrice:", "color: yellow", defaultPrice);
+  const newPrice = elPanier?.newPrice;
+  console.log("%cnewPrice in quantity:", "color: yellow", defaultPrice);
+  console.log("%cnewPrice in quantity:", "color: yellow", newPrice);
   // console.log("%ctypeof defaultPrice:", "color: yellow", typeof defaultPrice);
   // const elPanierQuantity = elPanier?.quantity;
   // console.log("%celPanierQuantity:", "color: yellow", elPanierQuantity);
@@ -24,9 +26,6 @@ const Quantity = ({ elPanier, state, dispatch, index }) => {
         type: "removePanier",
         elPanierId: idMeal,
       });
-    }
-    if (elPanier?.quantity === 10) {
-      dispatch({ type: "quantityIsOverTen", elPanierId: idMeal });
     }
   }, [elPanier?.quantity]);
 
@@ -44,6 +43,7 @@ const Quantity = ({ elPanier, state, dispatch, index }) => {
               elPanierId: idMeal,
               index: index,
               defaultPrice: defaultPrice,
+              newPrice: newPrice,
             });
           }}
         >

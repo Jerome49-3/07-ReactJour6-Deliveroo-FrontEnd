@@ -108,7 +108,7 @@ const Main = ({ data, faStar }) => {
                     );
                     const elPanierId = elPanier?.idMeal;
                     return (
-                      <div key={index} className="shoppingCard">
+                      <div key={index} className="shoppingCardUp">
                         <div className="elShoppingCard">
                           <span>
                             {" "}
@@ -123,8 +123,10 @@ const Main = ({ data, faStar }) => {
                           <span>{elPanier?.title}</span>
                           <Price elPanier={elPanier} />
                         </div>
-                        {elPanier?.message && elPanier?.quantity === 10 && (
-                          <div className="red">{elPanier.message}</div>
+                        {elPanier?.quantity === 10 && (
+                          <div className="red">
+                            La quantité maximale est limité à 10.
+                          </div>
                         )}
                       </div>
                     );
@@ -134,6 +136,8 @@ const Main = ({ data, faStar }) => {
                 <div>Le panier est vide</div>
               )}
             </div>
+            <br />
+            <div className="shoppingCardDown"></div>
           </article>
         </aside>
       </section>

@@ -6,7 +6,15 @@ const Price = ({ elPanier }) => {
   const [price, setPrice] = useState();
 
   useLayoutEffect(() => {
-    setPrice(elPanier?.defaultPrice);
+    const newPrice = elPanier?.newPrice / 100;
+    const defaultPrice = elPanier?.defaultPrice;
+    setPrice(() => {
+      if (newPrice) {
+        return newPrice.toFixed(2);
+      } else {
+        return defaultPrice;
+      }
+    });
   }, [elPanier]);
 
   return <span>{price}</span>;

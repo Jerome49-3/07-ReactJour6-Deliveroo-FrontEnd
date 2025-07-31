@@ -17,16 +17,23 @@ import Main from "./components/main/Main";
 import Logo from "./assets/images/logo-teal.svg";
 import fetchDataMeal from "./assets/lib/fetchData/fetchDataMeal";
 // import fetchCaddy from "./assets/lib/fetchData/fetchCaddy";
+import { useStateContext } from "./assets/lib/utils/useStateContext";
 
 function App() {
   const [data, setData] = useState();
+  const { state } = useStateContext();
   // console.log("data in App:", data);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetchDataMeal(axios, setData, setIsLoading);
   }, []);
-
+  useEffect(() => {
+    localStorage.setItem(
+      `${import.meta.env.VITE_REACT_APP_NAME_LOCALSTORAGE}`,
+      JSON.stringify(state)
+    );
+  }, [state]);
   useEffect(() => {
     socket.on("connect", () => {
       console.log("socket connected:", socket.id);

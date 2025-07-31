@@ -11,7 +11,9 @@ export const StateProvider = ({ children }) => {
 
   //******* STATE PANIER ************//
   const [state, dispatch] = useReducer(CaddyReducer, [], () => {
-    const newShoppingCard = localStorage.getItem("CaddyDeliveroo");
+    const newShoppingCard = localStorage.getItem(
+      `${import.meta.env.VITE_REACT_APP_NAME_LOCALSTORAGE}`
+    );
     console.log("%cnewShoppingCard in App:", "color: green", newShoppingCard);
     if (newShoppingCard === null) {
       return [];
