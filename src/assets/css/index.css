@@ -17,6 +17,7 @@ html,
 body {
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
 html,
@@ -150,3 +151,19 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+/* BREAKPOINTS */
+/* @media all and (min-width: 576px) {
+} */
+
+/* @media all and (min-width: 768px) {
+} */
+
+/* @media all and (min-width: 992px) {
+} */
+
+/* @media all and (min-width: 1200px) {
+} */
+
+/* @media all and (min-width: 1400px) {
+} */

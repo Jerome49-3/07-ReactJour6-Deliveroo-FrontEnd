@@ -1,11 +1,10 @@
-import Image from "../images/Image"
-import Title from '../title/Title'
-
-
+import Image from "../images/Image";
+import Title from "../title/Title";
 
 const Header = (props) => {
-  const { classHeader, classWrapper, src, alt, classImg, data, classTxt } = props;
-  console.log("classHeader, classWrapper, src, alt, imgHeader in header:", classHeader, classWrapper, src, alt, classImg);
+  const { classHeader, classWrapper, src, alt, classImg, data, classTxt } =
+    props;
+  // console.log("classHeader, classWrapper, src, alt, imgHeader in header:", classHeader, classWrapper, src, alt, classImg);
   return (
     <>
       <header className={classHeader}>
@@ -21,11 +20,10 @@ const Header = (props) => {
             <Image src={data?.restaurant.picture} classImg="imgBanner" />
           </div>
         </div>
-        <div>
-        </div>
+        <div></div>
       </header>
     </>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

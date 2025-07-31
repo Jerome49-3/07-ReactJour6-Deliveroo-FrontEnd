@@ -6,14 +6,16 @@ import Quantity from "../counter/Quantity";
 import Price from "../price/Price";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { v4 as uuidv4 } from 'uuid';
-import handleAddCaddy from "../../assets/lib/handleClick/handleAddCaddy";
-import axios from "axios";
+// import handleAddCaddy from "../../assets/lib/handleClick/handleAddCaddy";
+// import axios from "axios";
+import { useStateContext } from "../../assets/lib/utils/useStateContext";
 
-const Main = ({ data, panier, setPanier, faStar }) => {
+const Main = ({ data, faStar }) => {
+  const { state, dispatch } = useStateContext();
   // console.log("%cdata in Main:", "color: yellow", data);
   //convention de nommage pour le panier:
   // const [cart, setCart] = useState([]);
-  console.log("%cPanier in Main:", "color: orange", panier);
+  console.log("%cstate in Main:", "color: orange", state);
 
   //je crée un nouveau tableau de panier
   return (
@@ -39,15 +41,18 @@ const Main = ({ data, panier, setPanier, faStar }) => {
                           <article
                             key={menus.id}
                             className="card"
-                            onClick={(e) =>
-                              handleAddCaddy(
-                                e,
-                                axios,
-                                panier,
-                                nameCategory,
-                                menus,
-                                setPanier
-                              )
+                            onClick={() =>
+                              dispatch({
+                                type: "addedPanier",
+                                newPanier: {
+                                  idMeal: menus.id,
+                                  title: menus.title,
+                                  defaultPrice: menus.price,
+                                  quantity:
+                                    menus.quantity === 0 ? 1 : menus.quantity,
+                                  categories: nameCategory,
+                                },
+                              })
                             }
                           >
                             <div className="left">
@@ -86,43 +91,33 @@ const Main = ({ data, panier, setPanier, faStar }) => {
           <article className="panier">
             <h3>Valider mon panier</h3>
             <div className="shoppingContainer">
-              {panier?.length > 0 && (
+              {state?.length > 0 && (
                 <div className="boxTitles">
                   <span>Quantity</span>
                   <span>Plats</span>
                   <span>Price</span>
                 </div>
               )}
-              {panier?.length !== 0 ? (
+              {state?.length !== 0 ? (
                 <>
-                  {panier?.map((elPanier) => {
-                    // console.log("%celPanier:", "color: orange", elPanier);
+                  {state?.map((elPanier, index) => {
+                    console.log(
+                      "%celPanier in Main:",
+                      "color: orange",
+                      elPanier
+                    );
                     const elPanierId = elPanier?.idMeal;
-                    // {
-                    //   console.log(
-                    //     "elPanier in aside:",
-                    //     "\n",
-                    //     elPanier.id,
-                    //     "\n",
-                    //     "elPanier in aside:",
-                    //     elPanier.title,
-                    //     "\n",
-                    //     "elPanier in aside:",
-                    //     elPanier.price,
-                    //     "\n",
-                    //     "elPanier in aside:",
-                    //     elPanier.quantity
-                    //   );
-                    // }
                     return (
-                      <div key={elPanierId} className="shoppingCard">
+                      <div key={index} className="shoppingCard">
                         {/* <div>{repas.id}</div> */}
                         <span>
                           {" "}
                           <Quantity
-                            panier={panier}
-                            setPanier={setPanier}
                             elPanier={elPanier}
+                            state={state}
+                            dispatch={dispatch}
+                            elPanierId={elPanierId}
+                            index={index}
                           />
                         </span>
                         <span>{elPanier?.title}</span>

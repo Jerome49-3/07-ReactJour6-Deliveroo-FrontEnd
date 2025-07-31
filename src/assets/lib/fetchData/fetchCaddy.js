@@ -1,4 +1,4 @@
-const fetchCaddy = async (axios, setPanier) => {
+const fetchCaddy = async (axios, dispatch) => {
   try {
     const response = await axios.get(
       `${import.meta.env.VITE_REACT_APP_URL}/getCaddy`
@@ -12,7 +12,10 @@ const fetchCaddy = async (axios, setPanier) => {
         panierIsArray
       );
       if (panierIsArray) {
-        setPanier(response?.data?.panier);
+        dispatch({
+          type: "addedResponsePanier",
+          panier: response?.data?.panier,
+        });
         localStorage.setItem(
           "CaddyDeliveroo",
           JSON.stringify(response?.data?.panier)

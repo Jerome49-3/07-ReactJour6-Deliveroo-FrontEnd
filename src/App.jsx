@@ -16,22 +16,12 @@ import Main from "./components/main/Main";
 //images
 import Logo from "./assets/images/logo-teal.svg";
 import fetchDataMeal from "./assets/lib/fetchData/fetchDataMeal";
-import fetchCaddy from "./assets/lib/fetchData/fetchCaddy";
+// import fetchCaddy from "./assets/lib/fetchData/fetchCaddy";
 
 function App() {
   const [data, setData] = useState();
   // console.log("data in App:", data);
   const [isLoading, setIsLoading] = useState(true);
-  const [panier, setPanier] = useState(() => {
-    const newShoppingCard = localStorage.getItem("CaddyDeliveroo");
-    // console.log("%cnewShoppingCard in App:", "color: green", newShoppingCard);
-    if (newShoppingCard === null) {
-      return [];
-    } else {
-      return JSON.parse(newShoppingCard);
-    }
-  });
-  console.log("%cpanier in App:", "color: yellow", panier);
 
   useEffect(() => {
     fetchDataMeal(axios, setData, setIsLoading);
@@ -43,7 +33,7 @@ function App() {
     });
     socket.on("caddyUpdated", (change) => {
       console.log("%cchange in App:", "color: blue", change);
-      fetchCaddy(axios, setPanier);
+      // fetchCaddy(axios, setPanier);
     });
     socket.on("disconnect", () => {
       console.log(socket.id);
@@ -52,7 +42,7 @@ function App() {
       console.log("%cerror on socket in Home page:", "color: red", error);
     });
     return () => socket.off("caddyUpdated");
-  }, [panier]);
+  }, []);
 
   return isLoading ? (
     <Loading />
@@ -66,13 +56,7 @@ function App() {
         data={data}
         classTxt="titleOne"
       />
-      <Main
-        data={data}
-        classMain="wrapper banner"
-        panier={panier}
-        setPanier={setPanier}
-        faStar={faStar}
-      />
+      <Main data={data} classMain="wrapper banner" faStar={faStar} />
     </>
   );
 }
