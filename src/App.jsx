@@ -18,6 +18,7 @@ import Logo from "./assets/images/logo-teal.svg";
 import fetchDataMeal from "./assets/lib/fetchData/fetchDataMeal";
 // import fetchCaddy from "./assets/lib/fetchData/fetchCaddy";
 import { useStateContext } from "./assets/lib/utils/useStateContext";
+import Footer from "./components/footer/Footer";
 
 function App() {
   const [data, setData] = useState();
@@ -64,6 +65,7 @@ function App() {
         classTxt="titleOne"
       />
       <Main data={data} classMain="wrapper banner" faStar={faStar} />
+      <Footer />
     </>
   );
 }

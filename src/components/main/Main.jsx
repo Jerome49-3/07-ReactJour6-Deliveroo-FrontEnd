@@ -32,7 +32,7 @@ const Main = ({ data, faStar }) => {
               if (category?.meals?.length !== 0) {
                 return (
                   <Fragment key={category._id}>
-                    <div>
+                    <div className="boxTitleCategory">
                       <Title title={category.name} classTxt="titleCateg" />
                     </div>
                     <div className="boxCards">
@@ -89,6 +89,7 @@ const Main = ({ data, faStar }) => {
           </div>
         </div>
         <aside>
+          <div className="boxTitleCategory"></div>
           <article className="panier">
             <h3>Valider mon panier</h3>
             <div className="shoppingContainer">
