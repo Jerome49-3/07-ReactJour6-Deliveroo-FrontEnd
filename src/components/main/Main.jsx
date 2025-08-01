@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import handleAddCaddy from "../../assets/lib/handleClick/handleAddCaddy";
 // import axios from "axios";
 import { useStateContext } from "../../assets/lib/utils/useStateContext";
+import SubtotalAndTotal from "../subtotal/SubtotalAndTotal";
 
 const Main = ({ data, faStar }) => {
   const { state, dispatch } = useStateContext();
@@ -114,13 +115,11 @@ const Main = ({ data, faStar }) => {
                             {" "}
                             <Quantity
                               elPanier={elPanier}
-                              state={state}
                               dispatch={dispatch}
-                              elPanierId={elPanierId}
                               index={index}
                             />
                           </span>
-                          <span>{elPanier?.title}</span>
+                          <span className="productName">{elPanier?.title}</span>
                           <Price elPanier={elPanier} />
                         </div>
                         {elPanier?.quantity === 10 && (
@@ -131,13 +130,15 @@ const Main = ({ data, faStar }) => {
                       </div>
                     );
                   })}
+                  <div className="line"></div>
+                  <div className="shoppingCardDown">
+                    <SubtotalAndTotal state={state} dispatch={dispatch} />
+                  </div>
                 </>
               ) : (
                 <div>Le panier est vide</div>
               )}
             </div>
-            <br />
-            <div className="shoppingCardDown"></div>
           </article>
         </aside>
       </section>

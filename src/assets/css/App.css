@@ -237,6 +237,7 @@ aside article h3 {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
+
 .boxTitles {
   display: flex;
   justify-content: space-between;
@@ -255,17 +256,15 @@ aside article h3 {
   background: linear-gradient(
     90deg,
     rgba(255, 255, 255, 1) 0%,
-    rgba(0, 204, 188, 1) 100%
+    rgb(178 255 249) 100%
   );
-  padding: 10px 0 10px 5px;
   /* border: 2px solid crimson; */
   border-radius: 10px;
-  gap: 10px;
-  box-shadow: 0px 0px 2.5px rgba(0, 0, 0, 0.7),
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.7),
     0.25px 0.25px 1px rgba(0, 0, 0, 0.7);
-  -moz-box-shadow: 0px 0px 2.5px rgba(0, 0, 0, 0.7),
+  -moz-box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.7),
     0.25px 0.25px 1px rgba(0, 0, 0, 0.7);
-  -webkit-box-shadow: 0px 0px 2.5px rgba(0, 0, 0, 0.7),
+  -webkit-box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.7),
     0.25px 0.25px 1px rgba(0, 0, 0, 0.7);
 }
 .shoppingCardUp:hover {
@@ -276,23 +275,48 @@ aside article h3 {
   -webkit-box-shadow: inset 0px 0px 2.5px rgba(0, 0, 0, 0.7),
     inset 0.25px 0.25px 1px rgba(0, 0, 0, 0.7);
 }
+
 .boxTitles,
 .shoppingCardUp {
   & span {
     width: calc(100% / 3);
   }
 }
+.shoppingContainer .line {
+  margin-top: 5px;
+}
 .shoppingCardUp .elShoppingCard {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 60px;
+  padding: 0px 5px 0px 5px;
+}
+.elShoppingCard .productName {
+  flex: 2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-left: 5px;
+}
+.elShoppingCard span:first-child {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.elShoppingCard .price {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 .boxQuantity {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  width: 100%;
+  width: fit-content;
   gap: 5px;
 }
 .boxQuantity button {
@@ -356,4 +380,43 @@ aside article h3 {
   width: 100%;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
+}
+.shoppingCardDown {
+  /* border: 2px solid red; */
+  width: 100%;
+}
+.boxSubTotalAndTotal {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.boxSubTotalAndTotal .boxSubTotal,
+.boxSubTotalAndTotal .boxDeliveryCost,
+.boxSubTotalAndTotal .boxTotal {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.line {
+  width: 98%;
+  height: 2px;
+  background-color: rgb(191, 191, 191);
+  border-radius: 15px;
+  box-shadow: inset 0px 0px 1px #fefcfc, inset 0.25px 0.25px 0.25px #848484,
+    0px 0px 1px #848484, 0.25px 0.25px 0.25px #848484;
+}
+.shoppingCardDown .line {
+  margin-top: 0px;
+}
+.boxSubTotalAndTotal .boxSubTotal {
+  padding-bottom: 5px 0 5px 0;
+}
+.boxSubTotalAndTotal .boxDeliveryCost {
+  padding: 5px 0 10px 0;
+}
+.boxSubTotalAndTotal .boxTotal {
+  padding: 20px 0 10px 0;
 }

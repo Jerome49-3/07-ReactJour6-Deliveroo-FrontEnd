@@ -115,6 +115,9 @@ export default function CaddyReducer(state, action) {
     case "addedResponsePanier": {
       return action.panier;
     }
+    case "subTotal": {
+      return action.panier;
+    }
   }
   throw Error("unknow action" + action.type);
 }
