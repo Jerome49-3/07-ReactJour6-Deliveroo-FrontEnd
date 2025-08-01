@@ -16,7 +16,7 @@ import Main from "./components/main/Main";
 //images
 import Logo from "./assets/images/logo-teal.svg";
 import fetchDataMeal from "./assets/lib/fetchData/fetchDataMeal";
-// import fetchCaddy from "./assets/lib/fetchData/fetchCaddy";
+import fetchCaddy from "./assets/lib/fetchData/fetchCaddy";
 import { useStateContext } from "./assets/lib/utils/useStateContext";
 import Footer from "./components/footer/Footer";
 
@@ -41,7 +41,7 @@ function App() {
     });
     socket.on("caddyUpdated", (change) => {
       console.log("%cchange in App:", "color: blue", change);
-      // fetchCaddy(axios, setPanier);
+      fetchCaddy(axios, setPanier);
     });
     socket.on("disconnect", () => {
       console.log(socket.id);
